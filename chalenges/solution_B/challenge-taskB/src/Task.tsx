@@ -1,8 +1,7 @@
-
 import React, { useState } from "react";
-import { getTop3Services} from "./utilis";
+import { getTop3Services } from "./utilis";
 import type { Service } from "./utilis";
-import { Trophy, Sparkles, Zap, Heart } from "lucide-react";
+import { Trophy, Sparkles, Heart } from "lucide-react";
 
 const defaultServices: Service[] = [
   { name: "Tutoring", rating: 4.6 },
@@ -22,21 +21,17 @@ const Task: React.FC = () => {
   const [isRevealing, setIsRevealing] = useState(false);
   const [revealStep, setRevealStep] = useState(0);
 
-  // Core logic: get top 3 using utility function
   const results = getTop3Services(services);
 
-  // Add a new service if name is not empty
   const addService = () => {
     if (newService.name.trim()) {
       setServices([...services, newService]);
       setNewService({ name: "", rating: 4.5 });
-      // Fun shake animation on button
       setIsShaking(true);
       setTimeout(() => setIsShaking(false), 600);
     }
   };
 
-  // Dramatic countdown reveal of winners
   const revealWinners = async () => {
     setIsRevealing(true);
     setShowResults(false);
@@ -53,7 +48,6 @@ const Task: React.FC = () => {
     setIsRevealing(false);
   };
 
-  // Reset services and hide results
   const clearAll = () => {
     setServices(defaultServices);
     setShowResults(false);
@@ -61,31 +55,26 @@ const Task: React.FC = () => {
     setRevealStep(0);
   };
 
-  // Reset results display
   const resetResults = () => {
     setShowResults(false);
     setIsRevealing(false);
     setRevealStep(0);
   };
 
-  // Generate a random rating between 3.0 and 5.0
   const getRandomRating = () => {
     const randomRating = (Math.random() * 2 + 3).toFixed(1);
     setNewService({ ...newService, rating: parseFloat(randomRating) });
   };
 
-  // Medal emojis for top 3
   const getMedal = (index: number) => {
     const medals = ["🥇", "🥈", "🥉"];
     return medals[index] || "🏅";
   };
 
-  // Stars representation of rating, with sparkle for .5+
   const getStars = (rating: number) => {
     return "⭐".repeat(Math.floor(rating)) + (rating % 1 >= 0.5 ? "✨" : "");
   };
 
-  // Fun vibe colors and emojis based on rating
   const getVibes = (rating: number) => {
     if (rating >= 4.8)
       return { bg: "bg-yellow-400", text: "Amazing!", emoji: "🔥" };
@@ -96,7 +85,7 @@ const Task: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-600 via-pink-600 to-blue-600 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-purple-600 via-pink-600 to-blue-600 p-6">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
@@ -108,13 +97,11 @@ const Task: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-12">
           {/* Left: Add services + current services */}
-
-          <div className="space-y-6">
+          <div>
             {/* Add Service */}
-
-            <div className="bg-white/95 backdrop-blur rounded-2xl p-6 shadow-2xl">
+            <div className="bg-white/95 backdrop-blur rounded-2xl p-8 shadow-2xl mb-8">
               <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
                 <Sparkles className="text-pink-500" />
                 Add Your Service
@@ -170,7 +157,7 @@ const Task: React.FC = () => {
             </div>
 
             {/* Current Services */}
-            <div className="bg-white/95 backdrop-blur rounded-2xl p-6 shadow-2xl">
+            <div className="bg-white/95 backdrop-blur rounded-2xl p-8 shadow-2xl mb-8">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
                   <Heart className="text-red-500" />
@@ -184,13 +171,13 @@ const Task: React.FC = () => {
                 </button>
               </div>
 
-              <div className="space-y-3 max-h-80 overflow-y-auto">
+              <div className="space-y-4 max-h-80 overflow-y-auto p-2">
                 {services.map((service, index) => {
                   const vibe = getVibes(service.rating);
                   return (
                     <div
                       key={index}
-                      className="flex justify-between items-center p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors"
+                      className="flex justify-between items-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors"
                     >
                       <div>
                         <span className="font-bold text-gray-800">
@@ -214,9 +201,9 @@ const Task: React.FC = () => {
           </div>
 
           {/* Right: Results and reveal */}
-          <div className="space-y-6">
+          <div>
             {!showResults && !isRevealing && (
-              <div className="bg-white/95 backdrop-blur rounded-2xl p-8 shadow-2xl text-center">
+              <div className="bg-white/95 backdrop-blur rounded-2xl p-8 shadow-2xl mb-8 text-center">
                 <h2 className="text-3xl font-bold text-gray-800 mb-4">
                   Ready to see the winners? 🎭
                 </h2>
@@ -234,7 +221,7 @@ const Task: React.FC = () => {
             )}
 
             {isRevealing && (
-              <div className="bg-black text-white rounded-2xl p-12 shadow-2xl text-center">
+              <div className="bg-black text-white rounded-2xl p-12 shadow-2xl mb-8 text-center">
                 {revealStep > 0 ? (
                   <div className="animate-pulse">
                     <h2 className="text-6xl font-black mb-4">⏰</h2>
@@ -255,7 +242,7 @@ const Task: React.FC = () => {
             )}
 
             {showResults && (
-              <div className="bg-white/95 backdrop-blur rounded-2xl p-6 shadow-2xl animate-fadeIn">
+              <div className="bg-white/95 backdrop-blur rounded-2xl p-8 shadow-2xl mb-8 animate-fadeIn">
                 <div className="flex justify-between items-center mb-6">
                   <h2 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
                     <Trophy className="text-yellow-500" />
@@ -297,9 +284,7 @@ const Task: React.FC = () => {
                         <div className="text-2xl font-black text-gray-800">
                           {service.rating}
                         </div>
-                        <div className="text-lg">
-                          {getStars(service.rating)}
-                        </div>
+                        <div className="text-lg">{getStars(service.rating)}</div>
                       </div>
                     </div>
                   ))}
@@ -314,22 +299,9 @@ const Task: React.FC = () => {
               </div>
             )}
 
-            {/* Expected JSON output */}
-            {showResults && (
-              <div className="bg-gray-900 text-green-400 rounded-2xl p-6 shadow-2xl animate-fadeIn">
-                <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
-                  <Zap className="text-yellow-400" />
-                  Expected JSON Output:
-                </h3>
-                <pre className="text-sm overflow-x-auto bg-black/50 p-4 rounded-lg">
-                  {JSON.stringify(results, null, 2)}
-                </pre>
-              </div>
-            )}
-
             {/* Fun Stats */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-blue-500 text-white p-4 rounded-xl text-center shadow-lg">
+            <div className="grid grid-cols-2 gap-6">
+              <div className="bg-blue-500 text-white p-6 rounded-xl text-center shadow-lg">
                 <div className="text-2xl font-bold">
                   {(
                     services.reduce((sum, s) => sum + s.rating, 0) /
@@ -338,7 +310,7 @@ const Task: React.FC = () => {
                 </div>
                 <div className="text-sm font-medium">Avg Rating</div>
               </div>
-              <div className="bg-green-500 text-white p-4 rounded-xl text-center shadow-lg">
+              <div className="bg-green-500 text-white p-6 rounded-xl text-center shadow-lg">
                 <div className="text-2xl font-bold">
                   {services.filter((s) => s.rating >= 4.5).length}
                 </div>
