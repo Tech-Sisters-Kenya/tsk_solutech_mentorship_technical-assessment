@@ -1,5 +1,3 @@
-// src/utils.ts
-
 export interface Service {
   name: string;
   rating: number;
