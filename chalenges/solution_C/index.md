@@ -43,7 +43,7 @@ You may use your **phone**, **laptop webcam**, or any recording tool you’re co
 ## 🔗 Step 3: Share the Link With Us
 
 Once the upload is complete:
-- Copy the **video link**
+- Copy the **video link** https://youtu.be/Lt4BGMNo_EM?si=mXpIxXbbSMLmKFnN
 - Paste the link 
 
 🚫 Please **do not set it to Private**, as we won’t be able to view it.
