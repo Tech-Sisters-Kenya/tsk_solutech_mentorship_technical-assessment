@@ -10,7 +10,7 @@ Please record a 3–4 minute video introducing yourself. Include:
 - What excites you about tech and your goals
 - Anything else you'd love to share
 
-📎 **Paste Video Link: here** 
+📎 **Paste Video Link: https://youtu.be/Lt4BGMNo_EM?si=mXpIxXbbSMLmKFnN** 
 https://youtu.be/Lt4BGMNo_EM?si=mXpIxXbbSMLmKFnN
 
 ---
